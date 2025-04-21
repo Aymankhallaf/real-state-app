@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home')]
+    #[Route(path: '/', name: 'home')]
     /**
      * 
-     * @Route(   "/", name="home")
+     * @Route( "/", name="home")
      * @return Response
      */
     public function index(): Response
