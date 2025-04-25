@@ -24,7 +24,7 @@ class Property
     private ?float $price = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $adress = null;
+    private ?string $address = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
@@ -88,14 +88,14 @@ class Property
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getaddress(): ?string
     {
-        return $this->adress;
+        return $this->address;
     }
 
-    public function setAdress(string $adress): static
+    public function setaddress(string $address): static
     {
-        $this->adress = $adress;
+        $this->address = $address;
 
         return $this;
     }
