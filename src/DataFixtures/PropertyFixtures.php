@@ -22,9 +22,9 @@ class PropertyFixtures extends Fixture
             $property->setBed($faker->numberBetween(1, 10));
             $property->setBathroom($faker->numberBetween(1, 5));
             $property->setAddress($faker->address);
-            $property->setCity($faker->city);
-            $property->setPostalCode($faker->postcode);
             $property->setCreatedAt(new \DateTimeImmutable());
+            $property->setType($faker->randomElement(['apartment', 'house', 'villa']));
+            $property->setPurpose($faker->randomElement(['rent', 'sale']));
             
             // Add more fields as necessary
 
