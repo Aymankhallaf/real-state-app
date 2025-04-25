@@ -44,6 +44,9 @@ class Property
     #[ORM\Column(length: 10)]
     private ?string $purpose = null;
 
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $bathroom = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -165,6 +168,18 @@ class Property
     public function setPurpose(string $purpose): static
     {
         $this->purpose = $purpose;
+
+        return $this;
+    }
+
+    public function getBathroom(): ?int
+    {
+        return $this->bathroom;
+    }
+
+    public function setBathroom(int $bathroom): static
+    {
+        $this->bathroom = $bathroom;
 
         return $this;
     }
