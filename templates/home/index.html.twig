@@ -3,23 +3,18 @@
 {{ parent() }} - Home
 {% endblock %}
 
-{% block body %}
+{% block content %}
 
 <div class="container-xxl bg-white p-0">
     <!-- Spinner Start -->
+    {% include 'includes/spinner.html.twig' %}
 
     <!-- Spinner End -->
 
-
-    <!-- Navbar Start -->
-    <!-- Navbar End -->
-
-
     <!-- Header Start -->
-
+    {% include 'includes/header.html.twig' %}
     <!-- Header End -->
 
-    {% block content %}
 
     <!-- Search Start -->
     <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
@@ -891,10 +886,5 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
-{% endblock %}
-
 <!-- JavaScript Libraries -->
-
-</body>
-
 {% endblock %}
