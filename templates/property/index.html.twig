@@ -2,8 +2,7 @@
 {% block title %}
 {{ parent() }} - Home
 {% endblock %}
-
-{% block body  %}
+{% block content %}
 
 <div class="container-xxl bg-white p-0">
     <!-- Spinner Start -->
@@ -13,10 +12,6 @@
         </div>
     </div>
     <!-- Spinner End -->
-
-
-
-
     <!-- Header Start -->
     <div class="container-fluid header bg-white p-0">
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
@@ -756,5 +751,5 @@
 <!-- JavaScript Libraries -->
 
 </body>
-
+{% endblock  %}
 {% endblock  %}
