@@ -1,16 +1,18 @@
+{%import 'marcos/_property.html.twig' as property %}
 {% extends "base.html.twig" %}
 {% block title %}
-{{ parent() }} - Home
+    {{ parent() }} - Property
 {% endblock %}
-
 {% block content %}
+    <h1>Property List</h1>
+    <ul>
+     {% for property in properties %}
+        {{property.property(property)}}
+         >
+    {% endfor %}
+    </ul>
 
-<div class="container-xxl bg-white p-0">
-
-{% for property in properties %}
-{%macro  property (property)%}
-{% endfor %}
-
-</div>
-<!-- JavaScript Libraries -->
 {% endblock %}
+
+
+
