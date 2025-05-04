@@ -1,6 +1,7 @@
+{%import 'marcos/_propertyPage.html.twig' as propertyPage %}
 {% extends "base.html.twig" %}
 {% block title %}
-{{ parent() }} - Properties
+{{ parent() }} - {{property.title}}
 {% endblock %}
 {% block content %}
 <div class="container-xxl bg-white p-0">
@@ -28,7 +29,10 @@
                     </ul>
                 </div>
             </div>
-            
+
+            {{propertyPage.property(property)}}
+
+
         </div>
     </div>
 </div>
