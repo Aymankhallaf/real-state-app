@@ -23,7 +23,7 @@ final class PropertyController extends AbstractController
     }
 
     #[Route('/properties/{id}', name: 'property_show')]
-    public function show(PropertyRepository $repository, int $id): Response
+    public function showProperty(PropertyRepository $repository, int $id): Response
     {
         // Fetch a single property by its ID
         $property = $repository->find($id);
