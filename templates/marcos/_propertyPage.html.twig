@@ -1,0 +1,23 @@
+{%macro property (property)%}
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                    <img class="img-fluid w-100" src="img/property-1.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h1 class="mb-4">{{property.title}}</h1>
+                <p class="mb-4">{{property.description}}</p>
+                </p>
+                <p><i class="fa fa-map-marker-alt text-primary me-3"></i>{{property.address}}</p>
+                <p><i class="fa fa-ruler-combined text-primary me-3"></i>{{property.area}} Sqft</p>
+                <p><i class="fa fa-bed text-primary me-3"></i>{{property.bed}} Bed</p>
+                <p><i class="fa fa-bath text-primary me-3"></i>{{property.Bathroom}} Bed</p>
+                <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
