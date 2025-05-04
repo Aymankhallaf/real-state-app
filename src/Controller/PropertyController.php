@@ -10,7 +10,7 @@ use App\Repository\PropertyRepository;
 
 final class PropertyController extends AbstractController
 {
-    #[Route('/properties', name: 'properies')]
+    #[Route('/properties', name: 'properties')]
     public function index(PropertyRepository $repository): Response
     {
         // Fetch all properties from the database
