@@ -33,4 +33,13 @@ final class PropertyController extends AbstractController
             'property' => $property
         ]);
     }
+
+    #[Route('/properties/create', name: 'property_create')]
+    public function createProperty(): Response
+    {
+        // Render the property creation form in a Twig template
+        return $this->render('property/create.html.twig', [
+            'controller_name' => 'PropertyController'
+        ]);
+    }
 }
