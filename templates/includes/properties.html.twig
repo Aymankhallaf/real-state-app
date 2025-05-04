@@ -1,4 +1,4 @@
-{%import 'marcos/_property.html.twig' as property %}
+{%import 'marcos/_property.html.twig' as globalMacros %}
 <div class="container-xxl py-5">
     <div class="container">
         <!-- Properties name and description Start -->
@@ -31,10 +31,9 @@
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
                     <!-- Properties  row start -->
-                    {% for property in properties %}
-                    {{property.property(property)}}
+                    {% for property in properties|slice(0, 6) %}
+                    {{ globalMacros.property(property) }}
                     {% endfor %}
-
                     <!-- Properties  read more start -->
                     <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
                         <a class="btn btn-primary py-3 px-5" href="">Browse More Property</a>
@@ -70,8 +69,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
@@ -97,8 +96,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
@@ -124,8 +123,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
@@ -151,8 +150,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
@@ -178,8 +177,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
@@ -205,8 +204,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
@@ -241,8 +240,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
@@ -268,8 +267,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
@@ -295,8 +294,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
@@ -322,8 +321,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
@@ -349,8 +348,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
@@ -376,8 +375,8 @@
                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
+                                    Bath</small>
                             </div>
                         </div>
                     </div>
