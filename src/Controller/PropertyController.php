@@ -22,7 +22,7 @@ final class PropertyController extends AbstractController
         ]);
     }
 
-    #[Route('/properties/{id}', name: 'property_show')]
+    #[Route('/properties/{id<\d+>}', name: 'property_show')]
     public function showProperty(PropertyRepository $repository, int $id): Response
     {
         // Fetch a single property by its ID
