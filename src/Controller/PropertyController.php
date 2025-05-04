@@ -21,4 +21,16 @@ final class PropertyController extends AbstractController
             'properties' => $properties
         ]);
     }
+
+    #[Route('/properties/{id}', name: 'property_show')]
+    public function show(PropertyRepository $repository, int $id): Response
+    {
+        // Fetch a single property by its ID
+        $property = $repository->find($id);
+        // Render the property details in a Twig template
+        return $this->render('property/show.html.twig', [
+            'controller_name' => 'PropertyController',
+            'property' => $property
+        ]);
+    }
 }
