@@ -29,7 +29,7 @@
         <div class="tab-content">
             <!-- Properties list Start id=1-->
             <div id="tab-1" class="tab-pane fade show p-0 active">
-                <div class="row g-4">
+                <ul class="row g-4">
                     <!-- Properties  row start -->
                     {% for property in properties|slice(0, 6) %}
                     {{ propertyMacros.property(property) }}
@@ -41,7 +41,7 @@
                     <!-- Properties  read more end -->
                     <!-- Properties  row end -->
 
-                </div>
+                </ul>
             </div>
             <!-- Properties list Start id=2-->
 
