@@ -96,4 +96,31 @@ final class PropertyController extends AbstractController
             'property' => $property
         ]);
     }
+
+    #[Route('/properties/delete/{id<\d+>}', name: 'property_delete')]
+    public function deleteProperty(Property $property, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        if (!$property) {
+            // Add a flash message to indicate failure
+            $this->addFlash('error', 'Property not found!');
+            // Redirect to the property list page if the property is not found
+            return $this->redirectToRoute('properties');
+        }
+
+        if ($request->isMethod('POST')) {
+            // Handle the form submission and delete the property from the database
+            $entityManager->remove($property);
+            $entityManager->flush();
+            // Add a flash message to indicate success
+            $this->addFlash('success', 'Property deleted successfully!');
+
+            // Redirect to the property list page after successful deletion
+            return $this->redirectToRoute('properties');
+        }
+        
+        return $this->render('property/delete.html.twig', [
+            'controller_name' => 'PropertyController',
+            'property' => $property
+        ]);
+    }
 }
