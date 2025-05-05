@@ -51,7 +51,9 @@ final class PropertyController extends AbstractController
             $entityManager->flush();
 
             // Redirect to the property list page after successful creation
-            return $this->redirectToRoute('properties');
+            return $this->redirectToRoute('property_show', [
+                'id' => $property->getId()
+            ]);
         }
         // Render the property creation form in a Twig template
         return $this->render('property/create.html.twig', [
