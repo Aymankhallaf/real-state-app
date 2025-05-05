@@ -4,5 +4,14 @@
 {{ parent() }} - Properties
 {% endblock %}
 {% block content %}
-{{form(productForm)}}
+
+<div class="container-xxl bg-white p-0">
+    <div class="container-xxl py-5">
+        <div class="container">
+            {{ form(productForm)  }}
+
+        </div>
+    </div>
+</div>
+
 {% endblock %}
