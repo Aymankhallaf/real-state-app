@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PropertyRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PropertyRepository::class)]
 class Property
@@ -15,36 +16,99 @@ class Property
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 5, max: 50)]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9\s]+$/',
+        message: 'The title can only contain letters, numbers, and spaces.'
+    )]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 10, max: 1000)]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9\s.,]+$/',
+        message: 'The description can only contain letters, numbers, spaces, periods, and commas.'
+    )]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Positive]
+    #[Assert\Range(min: 0, max: 10000000)]
+    #[Assert\Regex(
+        pattern: '/^\d+(\.\d{1,2})?$/',
+        message: 'The price must be a positive number with up to two decimal places.'
+    )]
     private ?float $price = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9\s.,]+$/',
+        message: 'The address can only contain letters, numbers, spaces, periods, and commas.'
+    )]
     private ?string $address = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\NotBlank]
+    #[Assert\DateTime]
+
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Assert\NotBlank]
+    #[Assert\Positive]
+    #[Assert\Range(min: 0, max: 100)]
+    #[Assert\Regex(
+        pattern: '/^\d+$/',
+        message: 'The number of rooms must be a positive integer.'
+    )]
     private ?int $room = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Assert\NotBlank]
+    #[Assert\Positive]
+    #[Assert\Range(min: 0, max: 100)]
+    #[Assert\Regex(
+        pattern: '/^\d+$/',
+        message: 'The number of beds must be a positive integer.'
+    )]
     private ?int $bed = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Positive]
+    #[Assert\Range(min: 0, max: 100000)]
+    #[Assert\Regex(
+        pattern: '/^\d+(\.\d{1,2})?$/',
+        message: 'The area must be a positive number with up to two decimal places.'
+    )]
     private ?float $area = null;
 
     #[ORM\Column(length: 15)]
+    #[Assert\NotBlank]
+    #[Assert\Choice(choices: ['Apartment', 'House', 'Townhouse', 'Garage', 'Villa', 'Office', 'Shop', 'Home', 'Building'], message: 'Choose a valid type.')]
     private ?string $type = null;
 
     #[ORM\Column(length: 10)]
+    #[Assert\NotBlank]
+    #[Assert\Choice(choices: ['For Rent', 'For Sale'], message: 'Choose a valid purpose.')]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z]+$/',
+        message: 'The purpose can only contain letters.'
+    )]
+    #[Assert\Length(min: 4, max: 10)]
     private ?string $purpose = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Assert\NotBlank]
+    #[Assert\Positive]
+    #[Assert\Range(min: 0, max: 100)]
+    #[Assert\Regex(
+        pattern: '/^\d+$/',
+        message: 'The number of bathrooms must be a positive integer.'
+    )]
     private ?int $bathroom = null;
 
     public function getId(): ?int
