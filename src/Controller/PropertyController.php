@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\PropertyRepository;
-
+use App\Form\PropertyForm;
 
 final class PropertyController extends AbstractController
 {
@@ -37,9 +37,11 @@ final class PropertyController extends AbstractController
     #[Route('/properties/create', name: 'property_create')]
     public function createProperty(): Response
     {
+        $ProductForm = $this->createForm(PropertyForm::class);
         // Render the property creation form in a Twig template
         return $this->render('property/create.html.twig', [
-            'controller_name' => 'PropertyController'
+            'controller_name' => 'PropertyController',
+            'ProductForm' => $ProductForm
         ]);
     }
 }
