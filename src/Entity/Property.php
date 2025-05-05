@@ -57,7 +57,7 @@ class Property
 
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\NotBlank]
     #[Assert\Positive]
     #[Assert\Range(min: 0, max: 100)]
