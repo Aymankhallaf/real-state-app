@@ -18,10 +18,6 @@ class Property
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 5, max: 50)]
-    #[Assert\Regex(
-        pattern: '/^[a-zA-Z0-9\s]+$/',
-        message: 'The title can only contain letters, numbers, and spaces.'
-    )]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -36,10 +32,7 @@ class Property
     private ?float $price = null;
 
     #[ORM\Column(type:Types::STRING,length: 100)]
-    #[Assert\Regex(
-        pattern: '/^[a-zA-Z0-9\s.,]+$/',
-        message: 'The address can only contain letters, numbers, spaces, periods, and commas.'
-    )]
+    #[Assert\NotBlank]
     private ?string $address = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
