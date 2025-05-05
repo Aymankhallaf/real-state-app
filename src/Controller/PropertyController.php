@@ -44,13 +44,13 @@ final class PropertyController extends AbstractController
         // Create a new Property entity and form
         $property = new Property();
         // Create the form using the PropertyForm class
-        $productForm = $this->createForm(PropertyForm::class, $property);
+        $PropertyForm = $this->createForm(PropertyForm::class, $property);
         // Handle the form submission
-        $productForm->handleRequest($request);
+        $PropertyForm->handleRequest($request);
         // Check if the form is submitted and valid
-        if ($productForm->isSubmitted() && $productForm->isValid()) {
+        if ($PropertyForm->isSubmitted() && $PropertyForm->isValid()) {
             // Handle the form submission and save the property to the database
-            $property = $productForm->getData();
+            $property = $PropertyForm->getData();
             $entityManager->persist($property);
             $entityManager->flush();
             // Add a flash message to indicate success
@@ -64,7 +64,37 @@ final class PropertyController extends AbstractController
         // Render the property creation form in a Twig template
         return $this->render('property/create.html.twig', [
             'controller_name' => 'PropertyController',
-            'productForm' => $productForm
+            'PropertyForm' => $PropertyForm
+        ]);
+    }
+
+    #[Route('/properties/edit/{id<\d+>}', name: 'property_edit')]
+    public function editProperty(Property $property ,Request $request, EntityManagerInterface $entityManager): Response
+    {
+
+        // Create the form using the PropertyForm class
+        $PropertyForm = $this->createForm(PropertyForm::class, $property);
+        // Handle the form submission
+        $PropertyForm->handleRequest($request);
+        // Check if the form is submitted and valid
+        if ($PropertyForm->isSubmitted() && $PropertyForm->isValid()) {
+            // Handle the form submission and update the property in the database
+            $property = $PropertyForm->getData();
+            $entityManager->persist($property);
+            $entityManager->flush();
+            // Add a flash message to indicate success
+            $this->addFlash('success', 'Property updated successfully!');
+
+            // Redirect to the property list page after successful update
+            return $this->redirectToRoute('property_show', [
+                'id' => $property->getId()
+            ]);
+        }
+        // Render the property edit form in a Twig template
+        return $this->render('property/edit.html.twig', [
+            'controller_name' => 'PropertyController',
+            'PropertyForm' => $PropertyForm,
+            'property' => $property
         ]);
     }
 }
