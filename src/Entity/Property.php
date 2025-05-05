@@ -26,6 +26,7 @@ class Property
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\NotBlank]
+
     #[Assert\Length(min: 10, max: 1000)]
     #[Assert\Regex(
         pattern: '/^[a-zA-Z0-9\s.,]+$/',
@@ -33,7 +34,7 @@ class Property
     )]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::FLOAT, precision: 10, scale: 2)]
     #[Assert\NotBlank]
     #[Assert\Positive]
     #[Assert\Range(min: 0, max: 10000000)]
@@ -43,7 +44,7 @@ class Property
     )]
     private ?float $price = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(type:Types::STRING,length: 100)]
     #[Assert\Regex(
         pattern: '/^[a-zA-Z0-9\s.,]+$/',
         message: 'The address can only contain letters, numbers, spaces, periods, and commas.'
@@ -76,22 +77,22 @@ class Property
     )]
     private ?int $bed = null;
 
-    #[ORM\Column]
+    #[ORM\Column (type: Types::FLOAT, precision: 10, scale: 2)]
     #[Assert\NotBlank]
     #[Assert\Positive]
-    #[Assert\Range(min: 0, max: 100000)]
+    #[Assert\Range(min: 0, max: 10000000)]
     #[Assert\Regex(
         pattern: '/^\d+(\.\d{1,2})?$/',
         message: 'The area must be a positive number with up to two decimal places.'
     )]
     private ?float $area = null;
 
-    #[ORM\Column(length: 15)]
+    #[ORM\Column(type: Types::STRING ,length: 15)]
     #[Assert\NotBlank]
     #[Assert\Choice(choices: ['Apartment', 'House', 'Townhouse', 'Garage', 'Villa', 'Office', 'Shop', 'Home', 'Building'], message: 'Choose a valid type.')]
     private ?string $type = null;
 
-    #[ORM\Column(length: 10)]
+    #[ORM\Column(type: Types::STRING ,length: 10)]
     #[Assert\NotBlank]
     #[Assert\Choice(choices: ['For Rent', 'For Sale'], message: 'Choose a valid purpose.')]
     #[Assert\Regex(
@@ -101,7 +102,7 @@ class Property
     #[Assert\Length(min: 4, max: 10)]
     private ?string $purpose = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::SMALLINT, length: 3)]
     #[Assert\NotBlank]
     #[Assert\Positive]
     #[Assert\Range(min: 0, max: 100)]
