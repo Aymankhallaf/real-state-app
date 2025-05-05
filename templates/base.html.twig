@@ -33,30 +33,36 @@
 
 
 </head>
+
 <body>
+    {% for message in app.flashes('notice') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+    {% endfor %}
 
     {% block body %}
-        {% block navbar %}
-            {% include 'includes/navbar.html.twig' %}
-        {% endblock %}
+    {% block navbar %}
+    {% include 'includes/navbar.html.twig' %}
+    {% endblock %}
 
-        {% block content %}
-        {% endblock %}
+    {% block content %}
+    {% endblock %}
     {% endblock %}
 
     {% block footer %}
-        {% include 'includes/footer.html.twig' %}
+    {% include 'includes/footer.html.twig' %}
     {% endblock %}
 
     {% block javascripts %}
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="{{asset ('lib/wow/wow.min.js')}}"></script>
-        <script src="{{asset ('lib/easing/easing.min.js')}}"></script>
-        <script src="{{asset ('lib/waypoints/waypoints.min.js')}}"></script>
-        <script src="{{asset ('lib/owlcarousel/owl.carousel.min.js')}}"></script>
-        <script src="{{asset ('js/main.js')}}"></script>
-        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset ('lib/wow/wow.min.js')}}"></script>
+    <script src="{{asset ('lib/easing/easing.min.js')}}"></script>
+    <script src="{{asset ('lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{asset ('lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{asset ('js/main.js')}}"></script>
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
     {% endblock %}
 
 </body>

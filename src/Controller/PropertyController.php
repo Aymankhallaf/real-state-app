@@ -53,6 +53,8 @@ final class PropertyController extends AbstractController
             $property = $productForm->getData();
             $entityManager->persist($property);
             $entityManager->flush();
+            // Add a flash message to indicate success
+            $this->addFlash('notice', 'Property created successfully!');
 
             // Redirect to the property list page after successful creation
             return $this->redirectToRoute('property_show', [
