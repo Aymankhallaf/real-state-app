@@ -26,12 +26,7 @@ class Property
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\NotBlank]
-
     #[Assert\Length(min: 10, max: 1000)]
-    #[Assert\Regex(
-        pattern: '/^[a-zA-Z0-9\s.,]+$/',
-        message: 'The description can only contain letters, numbers, spaces, periods, and commas.'
-    )]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::FLOAT, precision: 10, scale: 2)]
