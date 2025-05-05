@@ -120,7 +120,8 @@ final class PropertyController extends AbstractController
         
         return $this->render('property/delete.html.twig', [
             'controller_name' => 'PropertyController',
-            'property' => $property
+            'title' => $property->getTitle(),
+            'id' => $property->getId()
         ]);
     }
 }
