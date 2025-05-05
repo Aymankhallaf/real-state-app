@@ -35,16 +35,26 @@
 </head>
 
 <body>
-    {% for message in app.flashes('notice') %}
-    <div class="flash-notice">
-        {{ message }}
-    </div>
-    {% endfor %}
 
     {% block body %}
     {% block navbar %}
     {% include 'includes/navbar.html.twig' %}
     {% endblock %}
+    {% for label, messages in app.flashes %}
+    {% set class = {
+    'success': 'alert-success',
+    'error': 'alert-danger',
+    'warning': 'alert-warning',
+    'info': 'alert-info'
+    }[label]|default('alert-secondary') %}
+
+    {% for message in messages %}
+    <div class="alert {{ class }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endfor %}
 
     {% block content %}
     {% endblock %}
