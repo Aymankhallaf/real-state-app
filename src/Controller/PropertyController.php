@@ -41,9 +41,13 @@ final class PropertyController extends AbstractController
     #[Route('/properties/create', name: 'property_create')]
     public function createProperty(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // Create a new Property entity and form
         $property = new Property();
+        // Create the form using the PropertyForm class
         $productForm = $this->createForm(PropertyForm::class, $property);
+        // Handle the form submission
         $productForm->handleRequest($request);
+        // Check if the form is submitted and valid
         if ($productForm->isSubmitted() && $productForm->isValid()) {
             // Handle the form submission and save the property to the database
             $property = $productForm->getData();
