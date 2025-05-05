@@ -1,0 +1,8 @@
+{%import 'marcos/_property.html.twig' as property %}
+{% extends "base.html.twig" %}
+{% block title %}
+{{ parent() }} - Properties
+{% endblock %}
+{% block content %}
+{{form(productForm)}}
+{% endblock %}
