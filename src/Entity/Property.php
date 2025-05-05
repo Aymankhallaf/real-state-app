@@ -38,10 +38,6 @@ class Property
     #[Assert\NotBlank]
     #[Assert\Positive]
     #[Assert\Range(min: 0, max: 10000000)]
-    #[Assert\Regex(
-        pattern: '/^\d+(\.\d{1,2})?$/',
-        message: 'The price must be a positive number with up to two decimal places.'
-    )]
     private ?float $price = null;
 
     #[ORM\Column(type:Types::STRING,length: 100)]
@@ -53,11 +49,9 @@ class Property
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\NotBlank]
-    #[Assert\DateTime]
-
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::SMALLINT)]
     #[Assert\NotBlank]
     #[Assert\Positive]
     #[Assert\Range(min: 0, max: 100)]
@@ -95,14 +89,10 @@ class Property
     #[ORM\Column(type: Types::STRING ,length: 10)]
     #[Assert\NotBlank]
     #[Assert\Choice(choices: ['For Rent', 'For Sale'], message: 'Choose a valid purpose.')]
-    #[Assert\Regex(
-        pattern: '/^[a-zA-Z]+$/',
-        message: 'The purpose can only contain letters.'
-    )]
     #[Assert\Length(min: 4, max: 10)]
     private ?string $purpose = null;
 
-    #[ORM\Column(type: Types::SMALLINT, length: 3)]
+    #[ORM\Column(type: Types::SMALLINT, length:3 )]
     #[Assert\NotBlank]
     #[Assert\Positive]
     #[Assert\Range(min: 0, max: 100)]
