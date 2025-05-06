@@ -20,11 +20,11 @@ Real Estate Easy is a web application aimed at streamlining property management 
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Aymankhallaf/real-estate-easy.git
+    git clone https://github.com/Aymankhallaf/real-state-app.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd real-estate-easy
+    cd real-state-app
     ```
 3. Install backend dependencies:
     ```bash
