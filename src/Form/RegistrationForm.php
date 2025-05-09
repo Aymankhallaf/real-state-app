@@ -13,12 +13,14 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Regex;
+
 class RegistrationForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email',EmailType::class, ['constraints'=>[
+            ->add('email', EmailType::class, ['constraints' => [
                 new NotBlank([
                     'message' => 'Please enter your email'
                 ]),
@@ -48,7 +50,23 @@ class RegistrationForm extends AbstractType
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
+                    ]),new Regex([
+                        'pattern' => '/[A-Z]/',
+                        'message' => 'It should contain at least one capital letter.'
                     ]),
+                    new Regex([
+                        'pattern' => '/[a-z]/',
+                        'message' => 'It should contain at least one small letter.'
+                    ]),
+                    new Regex([
+                        'pattern' => '/[0-9]/',
+                        'message' => 'It should contain at least one number.'
+                    ]),
+                    new Regex([
+                        'pattern' => '/[\W]/', // OR '/[^a-zA-Z0-9]/'
+                        'message' => 'It should contain at least one special character.'
+                    ]),
+                    
                 ]
             ])
         ;
