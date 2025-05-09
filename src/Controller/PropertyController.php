@@ -112,7 +112,8 @@ final class PropertyController extends AbstractController
             $entityManager->remove($property);
             $entityManager->flush();
             // Add a flash message to indicate success
-            $this->addFlash('success', 'Property deleted successfully!');
+            $this->addFlash('success', 
+            'Property deleted successfully!');
 
             // Redirect to the property list page after successful deletion
             return $this->redirectToRoute('properties');
