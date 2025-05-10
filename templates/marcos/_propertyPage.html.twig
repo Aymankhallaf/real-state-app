@@ -16,8 +16,10 @@
                 <p><i class="fa fa-bed text-primary me-3"></i>{{property.room}} rooms</p>
                 <p><i class="fa fa-bed text-primary me-3"></i>{{property.bed}} bedrooms</p>
                 <p><i class="fa fa-bath text-primary me-3"></i>{{property.Bathroom}} bathrooms</p>
+                {% if is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-warning py-3 px-5 mt-3" href="{{path('property_edit', {'id':property.id})}}">Edit</a>
                 <a class="btn btn-danger py-3 px-5 mt-3" href="{{path('property_delete', {'id':property.id})}}">Delete</a>
+                {% endif %}
             </div>
         </div>
     </div>
