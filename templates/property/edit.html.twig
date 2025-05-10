@@ -4,7 +4,7 @@
 {{ parent() }} - Edit Property
 {% endblock %}
 {% block content %}
-
+{% if is_granted('ROLE_ADMIN') %}
 <div class="container-xxl bg-white p-0">
     <div class="container-xxl py-5">
         <h1 class="mb-4">Edit Property</h1>
@@ -14,5 +14,5 @@
         </div>
     </div>
 </div>
-
+{%endif%}
 {% endblock %}
