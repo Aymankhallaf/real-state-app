@@ -11,7 +11,7 @@ use App\Form\PropertyForm;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Property;
-
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class PropertyController extends AbstractController
 {
     #[Route('/properties', name: 'properties')]
@@ -37,6 +37,7 @@ final class PropertyController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/properties/create', name: 'property_create')]
     public function createProperty(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -67,6 +68,7 @@ final class PropertyController extends AbstractController
         ]);
     }
 
+    #[IsGranted(attribute: 'ROLE_ADMIN')]
     #[Route('/properties/edit/{id<\d+>}', name: 'property_edit')]
     public function editProperty(Property $property ,Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -96,7 +98,8 @@ final class PropertyController extends AbstractController
             'property' => $property
         ]);
     }
-
+    
+    #[IsGranted(attribute: 'ROLE_ADMIN')]
     #[Route('/properties/delete/{id<\d+>}', name: 'property_delete')]
     public function deleteProperty(Property $property, Request $request, EntityManagerInterface $entityManager): Response
     {
