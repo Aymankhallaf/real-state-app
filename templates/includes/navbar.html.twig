@@ -14,18 +14,23 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
                 <a href="{{path('home')}}" class="nav-item nav-link active">Home</a>
+                <a href="{{ url('home', {}, 'property') }}" class="nav-item nav-link">Property</a>
                 <a href="{{ url('home', {}, 'about-us') }}" class="nav-item nav-link">About US</a>
+                {% if app.user %}
+                <a href="{{ path('app_logout') }}" class="nav-item nav-link">{{ app.user.userIdentifier }}, Logout</a>
+                {% else %}
                 <a href="{{path('app_register')}}" class="nav-item nav-link active">Register</a>
                 <a href="{{path('app_login')}}" class="nav-item nav-link">Log in</a>
+                {% endif %}
 
-                <div class="nav-item dropdown">
+                <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="property-list.html" class="dropdown-item">Property List</a>
                         <a href="property-type.html" class="dropdown-item">Property Type</a>
                         <a href="property-agent.html" class="dropdown-item">Property Agent</a>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu rounded-0 m-0">
