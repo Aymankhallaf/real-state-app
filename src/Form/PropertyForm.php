@@ -9,6 +9,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Validator\Constraints\File;
 
 class PropertyForm extends AbstractType
 {
@@ -37,6 +40,24 @@ class PropertyForm extends AbstractType
                 'class' => User::class,
                 'choice_label' => 'email',
             ])
+             ->add('images', CollectionType::class, [
+        'entry_type' => FileType::class,
+        'entry_options' => [
+            'label' => false,
+            'mapped' => false,
+            'required' => false,
+            'multiple' => false,
+            'constraints' => [
+                new File([
+                    'maxSize' => '5M',
+                    'mimeTypes' => ['image/jpeg', 'image/png'],
+                    'mimeTypesMessage' => 'Please upload a valid image',
+                ]),
+            ],
+        ],
+        'allow_add' => true,
+        'by_reference' => false,
+    ]);
         ;
     }
 
