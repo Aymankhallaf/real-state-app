@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Property;
+use App\Entity\PropertyType;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,10 +23,20 @@ class PropertyForm extends AbstractType
             ->add('room')
             ->add('bed')
             ->add('area')
-            ->add('type')
             ->add('purpose')
             ->add('bathroom')
-            ->add('save',SubmitType::class)
+            ->add('type', EntityType::class, [
+                'class' => PropertyType::class,
+                'choice_label' => 'id',
+            ])
+            ->add('createdBy', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'id',
+            ])
+            ->add('ownedBy', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'id',
+            ])
         ;
     }
 
