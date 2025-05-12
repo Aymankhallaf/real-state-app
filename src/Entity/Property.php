@@ -33,7 +33,7 @@ class Property
     #[Assert\Range(min: 0, max: 10000000)]
     private ?float $price = null;
 
-    #[ORM\Column(type:Types::STRING,length: 100)]
+    #[ORM\Column(type: Types::STRING, length: 100)]
     #[Assert\NotBlank]
     private ?string $address = null;
 
@@ -61,7 +61,7 @@ class Property
     )]
     private ?int $bed = null;
 
-    #[ORM\Column (type: Types::FLOAT, precision: 10, scale: 2)]
+    #[ORM\Column(type: Types::FLOAT, precision: 10, scale: 2)]
     #[Assert\NotBlank]
     #[Assert\Positive]
     #[Assert\Range(min: 0, max: 10000000)]
@@ -71,18 +71,22 @@ class Property
     )]
     private ?float $area = null;
 
-    #[ORM\Column(type: Types::STRING ,length: 15)]
-    #[Assert\NotBlank]
-    #[Assert\Choice(choices: ['Apartment', 'House', 'Townhouse', 'Garage', 'Villa', 'Office', 'Shop', 'Home', 'Building'], message: 'Choose a valid type.')]
-    private ?string $type = null;
+    // #[ORM\Column(type: Types::STRING ,length: 15)]
+    // #[Assert\NotBlank]
+    // #[Assert\Choice(choices: ['Apartment', 'House', 'Townhouse', 'Garage', 'Villa', 'Office', 'Shop', 'Home', 'Building'], message: 'Choose a valid type.')]
+    // private ?string $type = null;
 
-    #[ORM\Column(type: Types::STRING ,length: 10)]
+    #[ORM\ManyToOne(inversedBy: 'properties')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PropertyType $type = null;
+
+    #[ORM\Column(type: Types::STRING, length: 10)]
     #[Assert\NotBlank]
     #[Assert\Choice(choices: ['For Rent', 'For Sale'], message: 'Choose a valid purpose.')]
     #[Assert\Length(min: 4, max: 10)]
     private ?string $purpose = null;
 
-    #[ORM\Column(type: Types::SMALLINT, length:3 )]
+    #[ORM\Column(type: Types::SMALLINT, length: 3)]
     #[Assert\NotBlank]
     #[Assert\Positive]
     #[Assert\Range(min: 0, max: 100)]
@@ -204,17 +208,17 @@ class Property
         return $this;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
+    // public function getType(): ?string
+    // {
+    //     return $this->type;
+    // }
 
-    public function setType(string $type): static
-    {
-        $this->type = $type;
+    // public function setType(string $type): static
+    // {
+    //     $this->type = $type;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getPurpose(): ?string
     {

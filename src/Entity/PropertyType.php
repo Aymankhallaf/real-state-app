@@ -3,7 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\PropertyTypeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PropertyTypeRepository::class)]
 class PropertyType
@@ -21,6 +25,14 @@ class PropertyType
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imgAlt = null;
+
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Property::class)]
+    private Collection $properties;
+    public function __construct()
+    {
+        $this->properties = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
