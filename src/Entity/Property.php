@@ -217,17 +217,17 @@ class Property
         return $this;
     }
 
-    // public function getType(): ?string
-    // {
-    //     return $this->type;
-    // }
+    public function getType(): ?PropertyType
+    {
+        return $this->type;
+    }
 
-    // public function setType(string $type): static
-    // {
-    //     $this->type = $type;
+    public function setType(?PropertyType  $type): static
+    {
+        $this->type = $type;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     public function getPurpose(): ?string
     {
