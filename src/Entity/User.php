@@ -24,6 +24,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Email]
     private ?string $email = null;
 
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $phoneNumber = null;
+
     /**
      * @var list<string> The user roles
      */
@@ -54,6 +57,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(string $phoneNumber): static
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+    
     /**
      * A visual identifier that represents this user.
      *
