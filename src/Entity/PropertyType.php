@@ -28,6 +28,8 @@ class PropertyType
 
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: Property::class)]
     private Collection $properties;
+
+
     public function __construct()
     {
         $this->properties = new ArrayCollection();
@@ -71,6 +73,35 @@ class PropertyType
     public function setImgAlt(?string $imgAlt): static
     {
         $this->imgAlt = $imgAlt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Property>
+     */
+    public function getProperties(): Collection
+    {
+        return $this->properties;
+    }
+
+    public function addProperty(Property $property): static
+    {
+        if (!$this->properties->contains($property)) {
+            $this->properties[] = $property;
+            $property->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProperty(Property $property): static
+    {
+        if ($this->properties->removeElement($property)) {
+            if ($property->getType() === $this) {
+                $property->setType(null);
+            }
+        }
 
         return $this;
     }
