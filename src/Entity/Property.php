@@ -96,6 +96,15 @@ class Property
     )]
     private ?int $bathroom = null;
 
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $createdBy = null;
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $ownedBy = null;
+
     /**
      * @var Collection<int, Image>
      */
@@ -243,6 +252,28 @@ class Property
 
         return $this;
     }
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $user): static
+    {
+        $this->createdBy = $user;
+        return $this;
+    }
+
+    public function getOwnedBy(): ?User
+    {
+        return $this->ownedBy;
+    }
+
+    public function setOwnedBy(?User $user): static
+    {
+        $this->ownedBy = $user;
+        return $this;
+    }
+
 
     /**
      * @return Collection<int, Image>
