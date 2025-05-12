@@ -27,7 +27,7 @@ class PropertyForm extends AbstractType
             ->add('bathroom')
             ->add('type', EntityType::class, [
                 'class' => PropertyType::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
             ->add('createdBy', EntityType::class, [
                 'class' => User::class,
@@ -35,7 +35,7 @@ class PropertyForm extends AbstractType
             ])
             ->add('ownedBy', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'id',
+                'choice_label' => 'email',
             ])
         ;
     }
