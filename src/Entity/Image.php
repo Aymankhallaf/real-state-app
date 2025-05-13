@@ -29,7 +29,7 @@ class Image
     private ?string $alt = null;
 
 
-    #[Vich\UploadableField(mapping: 'property_images', fileNameProperty: 'url')]
+    #[Vich\UploadableField(mapping: 'property_image', fileNameProperty: 'url')]
     private ?File $imageFile = null;
 
 
