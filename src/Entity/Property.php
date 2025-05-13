@@ -105,8 +105,8 @@ class Property
     #[ORM\JoinColumn(nullable: false)]
     private ?User $ownedBy = null;
 
-    
-    #[ORM\OneToMany(mappedBy: 'property', targetEntity: Image::class, cascade: ['persist', 'remove'],orphanRemoval: true)]
+
+    #[ORM\OneToMany(mappedBy: 'property', targetEntity: Image::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $images;
 
     public function __construct()
@@ -273,7 +273,7 @@ class Property
     }
 
 
-   
+
     public function getImages(): Collection
     {
         return $this->images;
@@ -282,8 +282,8 @@ class Property
     public function addImage(Image $image): static
     {
         if (!$this->images->contains($image)) {
-            $this->images->add($image);
-            $image->setProperty($this);// Set back-reference
+            $this->images[] = $image;
+            $image->setProperty($this); // Set back-reference
         }
 
         return $this;
