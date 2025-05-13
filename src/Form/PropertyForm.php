@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use App\Form\ImageForm;
-
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PropertyForm extends AbstractType
 {
@@ -47,6 +47,10 @@ class PropertyForm extends AbstractType
                 'by_reference' => false,
                 'prototype' => true,
                 'label' => false
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Save Property',
+                'attr' => ['class' => 'btn btn-primary']
             ]);
     }
 
