@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Property;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+
 final class PropertyController extends AbstractController
 {
     #[Route('/properties', name: 'properties')]
@@ -29,7 +30,7 @@ final class PropertyController extends AbstractController
     #[Route('/properties/{id<\d+>}', name: 'property_show')]
     public function showProperty(Property $property): Response
     {
-       
+
         // Render the property details in a Twig template
         return $this->render('property/show.html.twig', [
             'controller_name' => 'PropertyController',
@@ -51,6 +52,10 @@ final class PropertyController extends AbstractController
         if ($PropertyForm->isSubmitted() && $PropertyForm->isValid()) {
             // Handle the form submission and save the property to the database
             $property = $PropertyForm->getData();
+            foreach ($property->getImages() as $image) {
+                $image->setProperty($property);
+                $entityManager->persist($image);
+            }
             $entityManager->persist($property);
             $entityManager->flush();
             // Add a flash message to indicate success
@@ -70,7 +75,7 @@ final class PropertyController extends AbstractController
 
     #[IsGranted(attribute: 'ROLE_ADMIN')]
     #[Route('/properties/edit/{id<\d+>}', name: 'property_edit')]
-    public function editProperty(Property $property ,Request $request, EntityManagerInterface $entityManager): Response
+    public function editProperty(Property $property, Request $request, EntityManagerInterface $entityManager): Response
     {
 
         // Create the form using the PropertyForm class
@@ -81,6 +86,10 @@ final class PropertyController extends AbstractController
         if ($PropertyForm->isSubmitted() && $PropertyForm->isValid()) {
             // Handle the form submission and update the property in the database
             $property = $PropertyForm->getData();
+            foreach ($property->getImages() as $image) {
+                $image->setProperty($property);
+                $entityManager->persist($image);
+            }
             $entityManager->persist($property);
             $entityManager->flush();
             // Add a flash message to indicate success
@@ -98,7 +107,7 @@ final class PropertyController extends AbstractController
             'property' => $property
         ]);
     }
-    
+
     #[IsGranted(attribute: 'ROLE_ADMIN')]
     #[Route('/properties/delete/{id<\d+>}', name: 'property_delete')]
     public function deleteProperty(Property $property, Request $request, EntityManagerInterface $entityManager): Response
@@ -115,13 +124,15 @@ final class PropertyController extends AbstractController
             $entityManager->remove($property);
             $entityManager->flush();
             // Add a flash message to indicate success
-            $this->addFlash('success', 
-            'Property deleted successfully!');
+            $this->addFlash(
+                'success',
+                'Property deleted successfully!'
+            );
 
             // Redirect to the property list page after successful deletion
             return $this->redirectToRoute('properties');
         }
-        
+
         return $this->render('property/delete.html.twig', [
             'controller_name' => 'PropertyController',
             'title' => $property->getTitle(),
