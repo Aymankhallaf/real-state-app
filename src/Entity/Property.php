@@ -105,9 +105,7 @@ class Property
     #[ORM\JoinColumn(nullable: false)]
     private ?User $ownedBy = null;
 
-    /**
-     * @var Collection<int, Image>
-     */
+    
     #[ORM\OneToMany(mappedBy: 'property', targetEntity: Image::class, cascade: ['persist', 'remove'],orphanRemoval: true)]
     private Collection $images;
 

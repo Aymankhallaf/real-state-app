@@ -18,8 +18,8 @@ class Image
     #[ORM\Column]
     private ?int $id;
 
-    #[ORM\ManyToOne(inversedBy: 'images')]
-    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
+    #[ORM\ManyToOne(targetEntity: Property::class, inversedBy: 'images')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Property $property;
 
     #[ORM\Column(length: 255)]
@@ -28,11 +28,11 @@ class Image
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $alt = null;
 
-    
+
     #[Vich\UploadableField(mapping: 'property_images', fileNameProperty: 'url')]
     private ?File $imageFile = null;
 
-    
+
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $updatedAt;
 
@@ -90,7 +90,7 @@ class Image
     {
         return $this->imageFile;
     }
-     public function getWebPath(): string
+    public function getWebPath(): string
     {
         return '/uploads/images/' . $this->getUrl();
     }

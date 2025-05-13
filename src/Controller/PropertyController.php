@@ -44,6 +44,7 @@ final class PropertyController extends AbstractController
     {
         // Create a new Property entity and form
         $property = new Property();
+     
         // Create the form using the PropertyForm class
         $PropertyForm = $this->createForm(PropertyForm::class, $property);
         // Handle the form submission
