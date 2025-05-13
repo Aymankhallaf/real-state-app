@@ -11,6 +11,7 @@ use App\Form\PropertyForm;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Property;
+use App\Entity\Image;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class PropertyController extends AbstractController
@@ -44,7 +45,10 @@ final class PropertyController extends AbstractController
     {
         // Create a new Property entity and form
         $property = new Property();
-     
+
+        $image = new Image();
+        $image->setProperty($property);
+        $property->addImage($image);
         // Create the form using the PropertyForm class
         $PropertyForm = $this->createForm(PropertyForm::class, $property);
         // Handle the form submission
