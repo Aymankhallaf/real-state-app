@@ -23,12 +23,7 @@ class ImageForm extends AbstractType
             ->add('alt')
             ->add('updatedAt', null, [
                 'widget' => 'single_text',
-            ])
-            ->add('property', EntityType::class, [
-                'class' => Property::class,
-                'choice_label' => 'id',
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
