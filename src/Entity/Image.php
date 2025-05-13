@@ -19,6 +19,7 @@ class Image
     private ?int $id;
 
     #[ORM\ManyToOne(inversedBy: 'images')]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Property $property;
 
     #[ORM\Column(length: 255)]
