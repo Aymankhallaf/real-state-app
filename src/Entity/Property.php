@@ -273,9 +273,7 @@ class Property
     }
 
 
-    /**
-     * @return Collection<int, Image>
-     */
+   
     public function getImages(): Collection
     {
         return $this->images;
@@ -285,7 +283,7 @@ class Property
     {
         if (!$this->images->contains($image)) {
             $this->images->add($image);
-            $image->setProperty($this);
+            $image->setProperty($this);// Set back-reference
         }
 
         return $this;
