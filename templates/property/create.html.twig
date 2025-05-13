@@ -9,8 +9,10 @@
         <h1 class="mb-4">Create Property</h1>
         <div class="container">
             {% if is_granted('ROLE_ADMIN') %}
-            {{ form(PropertyForm)  }}
-            {% endif %}
+            {{ form_start(PropertyForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
+            {{ form_widget(PropertyForm) }}
+            {{ form_end(PropertyForm) }}
+             {% endif %}
 
         </div>
     </div>
