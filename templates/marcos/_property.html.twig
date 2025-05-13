@@ -1,8 +1,8 @@
 {%macro property (property)%}
-{% set image = property.images|first %}
 <li class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
     <div class="property-item rounded overflow-hidden">
         <div class="position-relative overflow-hidden">
+            {% set image = property.images|first %}
             {% if image %}
             <img class="img-fluid" src="{{ asset(image.webPath) }}" alt="{{ image.alt }}">
             {% else %}

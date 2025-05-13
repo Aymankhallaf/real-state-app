@@ -4,7 +4,12 @@
         <div class="row g-5 align-items-center">
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                    <img class="img-fluid w-100" src="{{asset ('img/property-1.jpg')}}" alt="">
+                    {% set image = property.images|first %}
+                    {% if image %}
+                    <img class="img-fluid w-100" src="{{ asset(image.webPath) }}" alt="{{ image.alt }}">
+                    {% else %}
+                    <img class="img-fluid w-100" src="{{ asset('img/property-1.jpg') }}" alt="Default image">
+                    {% endif %}
                 </div>
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
@@ -18,7 +23,8 @@
                 <p><i class="fa fa-bath text-primary me-3"></i>{{property.Bathroom}} bathrooms</p>
                 {% if is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-warning py-3 px-5 mt-3" href="{{path('property_edit', {'id':property.id})}}">Edit</a>
-                <a class="btn btn-danger py-3 px-5 mt-3" href="{{path('property_delete', {'id':property.id})}}">Delete</a>
+                <a class="btn btn-danger py-3 px-5 mt-3"
+                    href="{{path('property_delete', {'id':property.id})}}">Delete</a>
                 {% endif %}
             </div>
         </div>
