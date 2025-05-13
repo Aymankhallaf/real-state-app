@@ -108,7 +108,7 @@ class Property
     /**
      * @var Collection<int, Image>
      */
-    #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'property')]
+    #[ORM\OneToMany(mappedBy: 'property', targetEntity: Image::class, cascade: ['persist', 'remove'])]
     private Collection $images;
 
     public function __construct()
