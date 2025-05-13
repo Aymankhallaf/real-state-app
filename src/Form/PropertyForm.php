@@ -9,10 +9,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Validator\Constraints\File;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+use App\Form\ImageForm;
+
 
 class PropertyForm extends AbstractType
 {
@@ -41,11 +40,12 @@ class PropertyForm extends AbstractType
                 'class' => User::class,
                 'choice_label' => 'email',
             ])
-            ->add('imageFile', VichImageType::class, [
-                'label' => 'Upload Image',
-                'required' => false,
+            ->add('images', CollectionType::class, [
+                'entry_type' => ImageForm::class,
+                'allow_add' => true,
                 'allow_delete' => true,
-                'download_uri' => true,
+                'by_reference' => false,
+                'label' => 'Images',
             ]);
     }
 
