@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PropertyForm extends AbstractType
 {
@@ -40,25 +41,12 @@ class PropertyForm extends AbstractType
                 'class' => User::class,
                 'choice_label' => 'email',
             ])
-             ->add('images', CollectionType::class, [
-        'entry_type' => FileType::class,
-        'entry_options' => [
-            'label' => false,
-            'mapped' => false,
-            'required' => false,
-            'multiple' => false,
-            'constraints' => [
-                new File([
-                    'maxSize' => '5M',
-                    'mimeTypes' => ['image/jpeg', 'image/png'],
-                    'mimeTypesMessage' => 'Please upload a valid image',
-                ]),
-            ],
-        ],
-        'allow_add' => true,
-        'by_reference' => false,
-    ]);
-        ;
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Upload Image',
+                'required' => false,
+                'allow_delete' => true,
+                'download_uri' => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
