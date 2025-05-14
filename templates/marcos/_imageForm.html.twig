@@ -1,0 +1,15 @@
+{% macro imageCollectionWidget(form) %}
+    <div class="mb-3">
+        <label>Property Images</label>
+        <div id="images-collection" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+            {% for imageForm in form.images %}
+                <div class="image-entry">
+                    {{ form_row(imageForm.imageFile) }}
+                    {{ form_row(imageForm.alt) }}
+                    <button type="button" class="btn btn-sm btn-danger remove-image">Remove</button>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" id="add-image" class="btn btn-sm btn-secondary mt-2">Add another image</button>
+    </div>
+{% endmacro %}
