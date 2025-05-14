@@ -1,69 +1,106 @@
-{%import 'marcos/_property.html.twig' as property %}
+{% import 'marcos/_property.html.twig' as property %}
 {% extends "base.html.twig" %}
+
 {% block title %}
-{{ parent() }} - Create Property
+    {{ parent() }} - Create Property
 {% endblock %}
+
 {% block content %}
 <div class="container-xxl bg-white p-0">
     <div class="container-xxl py-5">
         <h1 class="mb-4">Create Property</h1>
+
         <div class="container">
             {{ form_start(PropertyForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
-            <div class="row g-3">
 
+            <div class="row g-3">
                 <div class="col-md-6">
                     {{ form_row(PropertyForm.title) }}
                 </div>
-
                 <div class="col-md-6">
                     {{ form_row(PropertyForm.price) }}
                 </div>
-
                 <div class="col-md-12">
                     {{ form_row(PropertyForm.description) }}
                 </div>
-
                 <div class="col-md-6">
                     {{ form_row(PropertyForm.address) }}
                 </div>
-
                 <div class="col-md-3">
                     {{ form_row(PropertyForm.area) }}
                 </div>
-
                 <div class="col-md-3">
                     {{ form_row(PropertyForm.room) }}
                 </div>
-
                 <div class="col-md-3">
                     {{ form_row(PropertyForm.bed) }}
                 </div>
-
                 <div class="col-md-3">
                     {{ form_row(PropertyForm.bathroom) }}
                 </div>
-
                 <div class="col-md-6">
                     {{ form_row(PropertyForm.purpose) }}
                 </div>
-
                 <div class="col-md-6">
                     {{ form_row(PropertyForm.type) }}
                 </div>
 
-                <div data-prototype="{{ form_widget(PropertyForm.images.vars.prototype)|e('html_attr') }}">
-                    {{ form_widget(PropertyForm.images) }}
+                <div class="col-12">
+                    <label class="form-label">Property Images</label>
+                    <div id="images-collection"
+                        data-prototype="{{ form_widget(PropertyForm.images.vars.prototype)|e('html_attr') }}">
+                        {% for imageForm in PropertyForm.images %}
+                            <div class="image-entry mb-3">
+                                {{ form_row(imageForm.imageFile) }}
+                                {{ form_row(imageForm.alt) }}
+                                <button type="button" class="btn btn-sm btn-danger remove-image">Remove</button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button type="button" id="add-image" class="btn btn-sm btn-secondary mt-2">Add another image</button>
                 </div>
 
-                <button type="submit" class="btn btn-success mt-3">Save</button>
-                {{ form_end(PropertyForm) }}
+    
 
-
-                {{ form_end(PropertyForm) }}
-
-                <!-- {{ dump(PropertyForm.images) }} -->
-            </div>
+            {{ form_end(PropertyForm) }}
         </div>
     </div>
+</div>
+{% endblock %}
 
-    {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const collectionHolder = document.getElementById('images-collection');
+            const addButton = document.getElementById('add-image');
+            let index = collectionHolder.querySelectorAll('.image-entry').length;
+
+            function addImageForm() {
+                const prototype = collectionHolder.dataset.prototype;
+                const newForm = prototype.replace(/__name__/g, index);
+                const div = document.createElement('div');
+                div.classList.add('image-entry', 'mb-3');
+                div.innerHTML = newForm;
+
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.className = 'btn btn-sm btn-danger mt-2 remove-image';
+                removeBtn.textContent = 'Remove';
+                removeBtn.addEventListener('click', () => div.remove());
+
+                div.appendChild(removeBtn);
+                collectionHolder.appendChild(div);
+                index++;
+            }
+
+            collectionHolder.querySelectorAll('.remove-image').forEach(button => {
+                button.addEventListener('click', function () {
+                    this.closest('.image-entry').remove();
+                });
+            });
+
+            addButton.addEventListener('click', addImageForm);
+        });
+    </script>
+{% endblock %}
