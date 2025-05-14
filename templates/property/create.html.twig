@@ -1,8 +1,13 @@
 {% import 'marcos/_property.html.twig' as property %}
+{% import 'marcos/_imageForm.html.twig' as imageForm %}
 {% extends "base.html.twig" %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+{% endblock %}
 
 {% block title %}
-    {{ parent() }} - Create Property
+{{ parent() }} - Create Property
 {% endblock %}
 
 {% block content %}
@@ -45,30 +50,18 @@
                     {{ form_row(PropertyForm.type) }}
                 </div>
 
-                <div class="col-12">
-                    <label class="form-label">Property Images</label>
-                    <div id="images-collection"
-                        data-prototype="{{ form_widget(PropertyForm.images.vars.prototype)|e('html_attr') }}">
-                        {% for imageForm in PropertyForm.images %}
-                            <div class="image-entry mb-3">
-                                {{ form_row(imageForm.imageFile) }}
-                                {{ form_row(imageForm.alt) }}
-                                <button type="button" class="btn btn-sm btn-danger remove-image">Remove</button>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <button type="button" id="add-image" class="btn btn-sm btn-secondary mt-2">Add another image</button>
-                </div>
+                {{ imageForm.imageCollectionWidget(PropertyForm) }}
 
-    
 
-            {{ form_end(PropertyForm) }}
+
+
+                {{ form_end(PropertyForm) }}
+            </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
 
-{% block javascripts %}
+    {% block javascripts %}
     {{ parent() }}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -103,4 +96,4 @@
             addButton.addEventListener('click', addImageForm);
         });
     </script>
-{% endblock %}
+    {% endblock %}
