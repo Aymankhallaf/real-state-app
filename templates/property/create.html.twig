@@ -8,12 +8,62 @@
     <div class="container-xxl py-5">
         <h1 class="mb-4">Create Property</h1>
         <div class="container">
-            {{ form_start(PropertyForm) }}
-            {{ form_widget(PropertyForm) }}
-            {{ form_end(PropertyForm) }}
-            <!-- {{ dump(PropertyForm.images) }} -->
+            {{ form_start(PropertyForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    {{ form_row(PropertyForm.title) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(PropertyForm.price) }}
+                </div>
+
+                <div class="col-md-12">
+                    {{ form_row(PropertyForm.description) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(PropertyForm.address) }}
+                </div>
+
+                <div class="col-md-3">
+                    {{ form_row(PropertyForm.area) }}
+                </div>
+
+                <div class="col-md-3">
+                    {{ form_row(PropertyForm.room) }}
+                </div>
+
+                <div class="col-md-3">
+                    {{ form_row(PropertyForm.bed) }}
+                </div>
+
+                <div class="col-md-3">
+                    {{ form_row(PropertyForm.bathroom) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(PropertyForm.purpose) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(PropertyForm.type) }}
+                </div>
+
+                <div data-prototype="{{ form_widget(PropertyForm.images.vars.prototype)|e('html_attr') }}">
+                    {{ form_widget(PropertyForm.images) }}
+                </div>
+
+                <button type="submit" class="btn btn-success mt-3">Save</button>
+                {{ form_end(PropertyForm) }}
+
+
+                {{ form_end(PropertyForm) }}
+
+                <!-- {{ dump(PropertyForm.images) }} -->
+            </div>
         </div>
     </div>
-</div>
 
-{% endblock %}
+    {% endblock %}
