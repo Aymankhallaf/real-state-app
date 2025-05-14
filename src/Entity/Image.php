@@ -22,7 +22,7 @@ class Image
     #[ORM\JoinColumn(nullable: false)]
     private ?Property $property;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $url = null;
 
     #[ORM\Column(length: 255, nullable: true)]
