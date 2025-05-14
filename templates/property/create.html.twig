@@ -1,5 +1,3 @@
-{% import 'marcos/_property.html.twig' as property %}
-{% import 'marcos/_imageForm.html.twig' as imageForm %}
 {% extends "base.html.twig" %}
 {% block stylesheets %}
 {{ parent() }}
@@ -16,84 +14,46 @@
         <h1 class="mb-4">Create Property</h1>
 
         <div class="container">
-            {{ form_start(PropertyForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
+            {% include './includes/_formProperty.html.twig' %}
 
-            <div class="row g-3">
-                <div class="col-md-6">
-                    {{ form_row(PropertyForm.title) }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(PropertyForm.price) }}
-                </div>
-                <div class="col-md-12">
-                    {{ form_row(PropertyForm.description) }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(PropertyForm.address) }}
-                </div>
-                <div class="col-md-3">
-                    {{ form_row(PropertyForm.area) }}
-                </div>
-                <div class="col-md-3">
-                    {{ form_row(PropertyForm.room) }}
-                </div>
-                <div class="col-md-3">
-                    {{ form_row(PropertyForm.bed) }}
-                </div>
-                <div class="col-md-3">
-                    {{ form_row(PropertyForm.bathroom) }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(PropertyForm.purpose) }}
-                </div>
-                <div class="col-md-6">
-                    {{ form_row(PropertyForm.type) }}
-                </div>
-
-                {{ imageForm.imageCollectionWidget(PropertyForm) }}
-
-
-
-
-                {{ form_end(PropertyForm) }}
-            </div>
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
 
-    {% block javascripts %}
-    {{ parent() }}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const collectionHolder = document.getElementById('images-collection');
-            const addButton = document.getElementById('add-image');
-            let index = collectionHolder.querySelectorAll('.image-entry').length;
+{% block javascripts %}
+{{ parent() }}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const collectionHolder = document.getElementById('images-collection');
+        const addButton = document.getElementById('add-image');
+        let index = collectionHolder.querySelectorAll('.image-entry').length;
 
-            function addImageForm() {
-                const prototype = collectionHolder.dataset.prototype;
-                const newForm = prototype.replace(/__name__/g, index);
-                const div = document.createElement('div');
-                div.classList.add('image-entry', 'mb-3');
-                div.innerHTML = newForm;
+        function addImageForm() {
+            const prototype = collectionHolder.dataset.prototype;
+            const newForm = prototype.replace(/__name__/g, index);
+            const div = document.createElement('div');
+            div.classList.add('image-entry', 'mb-3');
+            div.innerHTML = newForm;
 
-                const removeBtn = document.createElement('button');
-                removeBtn.type = 'button';
-                removeBtn.className = 'btn btn-sm btn-danger mt-2 remove-image';
-                removeBtn.textContent = 'Remove';
-                removeBtn.addEventListener('click', () => div.remove());
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'btn btn-sm btn-danger mt-2 remove-image';
+            removeBtn.textContent = 'Remove';
+            removeBtn.addEventListener('click', () => div.remove());
 
-                div.appendChild(removeBtn);
-                collectionHolder.appendChild(div);
-                index++;
-            }
+            div.appendChild(removeBtn);
+            collectionHolder.appendChild(div);
+            index++;
+        }
 
-            collectionHolder.querySelectorAll('.remove-image').forEach(button => {
-                button.addEventListener('click', function () {
-                    this.closest('.image-entry').remove();
-                });
+        collectionHolder.querySelectorAll('.remove-image').forEach(button => {
+            button.addEventListener('click', function () {
+                this.closest('.image-entry').remove();
             });
-
-            addButton.addEventListener('click', addImageForm);
         });
-    </script>
-    {% endblock %}
+
+        addButton.addEventListener('click', addImageForm);
+    });
+</script>
+{% endblock %}

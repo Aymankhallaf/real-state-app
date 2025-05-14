@@ -1,0 +1,40 @@
+{% import 'marcos/_property.html.twig' as property %}
+{% import 'marcos/_imageForm.html.twig' as imageForm %}
+{{ form_start(PropertyForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
+
+<div class="row g-3">
+    <div class="col-md-6">
+        {{ form_row(PropertyForm.title) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(PropertyForm.price) }}
+    </div>
+    <div class="col-md-12">
+        {{ form_row(PropertyForm.description) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(PropertyForm.address) }}
+    </div>
+    <div class="col-md-3">
+        {{ form_row(PropertyForm.area) }}
+    </div>
+    <div class="col-md-3">
+        {{ form_row(PropertyForm.room) }}
+    </div>
+    <div class="col-md-3">
+        {{ form_row(PropertyForm.bed) }}
+    </div>
+    <div class="col-md-3">
+        {{ form_row(PropertyForm.bathroom) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(PropertyForm.purpose) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(PropertyForm.type) }}
+    </div>
+
+    {{ imageForm.imageCollectionWidget(PropertyForm) }}
+
+    {{ form_end(PropertyForm) }}
+</div>
