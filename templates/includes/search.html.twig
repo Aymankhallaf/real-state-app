@@ -3,7 +3,7 @@
         <div class="row g-2">
             <div class="col-md-10">
                 <div class="row g-2">
-                    {{ form_start(form) }}
+                    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
                     <div class="col-md-4">
                         {{ form_row(form.title) }}
                         <!-- <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword"> -->
@@ -35,7 +35,7 @@
         </div>
     </div>
 </div>
-
+<!-- 
 {% if properties is defined %}
 <h2>Results:</h2>
 {% if properties|length > 0 %}
@@ -47,4 +47,4 @@
 {% else %}
 <p>No properties found.</p>
 {% endif %}
-{% endif %}
+{% endif %} -->
