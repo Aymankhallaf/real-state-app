@@ -2,14 +2,13 @@
 
 namespace App\Form;
 
-use Doctrine\DBAL\Types\TextType;
-use Dom\Text;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\PropertyType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class PropertySearchForm extends AbstractType
 {

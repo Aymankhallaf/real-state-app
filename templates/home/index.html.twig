@@ -13,8 +13,11 @@
     {% include 'includes/header.html.twig' %}
     <!-- Header End -->
     <!-- Search Start -->
-{% include 'includes/search.html.twig' with { form: form, properties: properties|default(null) } %}
+    {{ render(controller('App\\Controller\\PropertySearchController::searchProperty')) }}
+    {% include 'includes/search.html.twig' with { form: form, properties: properties|default(null) } %}
+
 {{ dump(Form) }}
+
     <!-- Search End -->
     <!-- Category Start -->
     <div class="container-xxl py-5">
