@@ -15,6 +15,7 @@ class PropertyRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Property::class);
     }
+    
 
     //    /**
     //     * @return Property[] Returns an array of Property objects
