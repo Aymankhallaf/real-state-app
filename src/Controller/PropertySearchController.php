@@ -24,6 +24,7 @@ class PropertySearchController extends AbstractController
         // Check if the form is submitted and valid
         if ($form->isSubmitted() && $form->isValid()) {
             // Fetch properties based on the search criteria
+            $propertySearch = $request->query->get('q');
             $properties = $repository->search($propertySearch);
             // Render the search results in a Twig template
             return $this->render('includes/search.html.twig', [
