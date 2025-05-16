@@ -32,8 +32,8 @@ class PropertySearchForm extends AbstractType
             ->add('type',EntityType::class, [
                 'class' => PropertyType::class,
                 'choice_label' => 'name',
-                'label' => 'Type',
-                'placeholder' => 'Type',
+                'label' => 'type',
+                'placeholder' => 'type',
                 'required' => false,
             ])
         ;

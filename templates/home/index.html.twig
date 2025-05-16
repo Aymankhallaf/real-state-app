@@ -14,9 +14,6 @@
     <!-- Header End -->
     <!-- Search Start -->
     {{ render(controller('App\\Controller\\PropertySearchController::searchProperty')) }}
-    {% include 'includes/search.html.twig' with { form: form, properties: properties|default(null) } %}
-
-{{ dump(Form) }}
 
     <!-- Search End -->
     <!-- Category Start -->
