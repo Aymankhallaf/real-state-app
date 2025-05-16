@@ -26,14 +26,11 @@ class PropertySearchForm extends AbstractType
                     'For Sale' => 'For Sale',
                     'For Rent' => 'For Rent',
                 ],
-                'expanded' => true,
-                'multiple' => false,
             ])
             ->add('type',EntityType::class, [
                 'class' => PropertyType::class,
                 'choice_label' => 'name',
-                'label' => 'type',
-                'placeholder' => 'type',
+                'label' => 'Type',
                 'required' => false,
             ])
         ;
