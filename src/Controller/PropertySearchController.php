@@ -1,22 +1,18 @@
 <?php
 
-use Doctrine\ORM\EntityManagerInterface;
+namespace App\Controller;
+use App\Form\PropertySearchForm;
+use App\Model\PropertySearch;
+use App\Repository\PropertyRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use App\Repository\PropertyRepository;
-use App\Form\PropertyForm;
-use Doctrine\ORM\EntityManager;
-use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Property;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
-use App\Form\PropertySearchForm;
-use App\Model\PropertySearch;
 
-//remove final from the class declaration to allow inhertied, extended
-class SearchController extends AbstractController
+class PropertySearchController extends AbstractController
 {
     #[Route('/search', name: 'app_search')]
+    
     public function searchProperty(Request $request, PropertyRepository $repository): Response
     {
         // Create a new PropertySearch object
