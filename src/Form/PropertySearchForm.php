@@ -19,7 +19,7 @@ class PropertySearchForm extends AbstractType
                 'label' => 'Title',
                 'required' => false,
             ])
-            ->add('Purpose', ChoiceType::class, [
+            ->add('purpose', ChoiceType::class, [
                 'label' => 'Purpose',
                 'choices' => [
                     '' => '',
@@ -29,7 +29,7 @@ class PropertySearchForm extends AbstractType
                 'expanded' => true,
                 'multiple' => false,
             ])
-            ->add('Type',EntityType::class, [
+            ->add('type',EntityType::class, [
                 'class' => PropertyType::class,
                 'choice_label' => 'name',
                 'label' => 'Type',
