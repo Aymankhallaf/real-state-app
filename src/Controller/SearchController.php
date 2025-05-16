@@ -17,7 +17,6 @@ use App\Model\PropertySearch;
 class SearchController extends AbstractController
 {
     #[Route('/search', name: 'app_search')]
-    
     public function searchProperty(Request $request, PropertyRepository $repository): Response
     {
         // Create a new PropertySearch object

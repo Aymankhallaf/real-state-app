@@ -3,7 +3,7 @@
         <div class="row g-2">
             <div class="col-md-10">
                 <div class="row g-2">
-                    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                    {{ form_start(form, {'attr': {'method': 'GET', 'action': path('property_search'),'enctype': 'multipart/form-data'}}) }}
                     <div class="col-md-4">
                         {{ form_row(form.title) }}
                         <!-- <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword"> -->
