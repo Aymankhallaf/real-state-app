@@ -147,7 +147,7 @@ final class PropertyController extends AbstractController
         ]);
     }
 
-    
+
     public function searchProperty(Request $request, PropertyRepository $repository): Response
     {
         // Create a new PropertySearch object
@@ -163,6 +163,7 @@ final class PropertyController extends AbstractController
             // Render the search results in a Twig template
             return $this->render('property/search.html.twig', [
                 'controller_name' => 'PropertyController',
+                //set the properties to the search results and show the form
                 'properties' => $properties,
                 'form' => $form->createView()
             ]);
