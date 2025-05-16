@@ -161,7 +161,7 @@ final class PropertyController extends AbstractController
             // Fetch properties based on the search criteria
             $properties = $repository->search($propertySearch);
             // Render the search results in a Twig template
-            return $this->render('property/search.html.twig', [
+            return $this->render('includes/search.html.twig', [
                 'controller_name' => 'PropertyController',
                 //set the properties to the search results and show the form
                 'properties' => $properties,
@@ -169,7 +169,7 @@ final class PropertyController extends AbstractController
             ]);
         }
         // Render the search form in a Twig template
-        return $this->render('property/search.html.twig', [
+        return $this->render('includes/search.html.twig', [
             'controller_name' => 'PropertyController',
             'form' => $form->createView()
         ]);
