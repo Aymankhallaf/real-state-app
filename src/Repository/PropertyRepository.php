@@ -15,7 +15,23 @@ class PropertyRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Property::class);
     }
-    
+
+    /**
+     * @return Property[] Returns an array of Property objects
+     */
+    public function search($value): array
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.type', 'pt')
+            ->andWhere('p.title LIKE :val OR p.purpose LIKE :val ORerry pt.name LIKE :val')
+            ->setParameter('val', '%' . $value . '%')
+            ->orderBy('p.created_at', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 
     //    /**
     //     * @return Property[] Returns an array of Property objects
