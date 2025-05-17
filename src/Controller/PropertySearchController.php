@@ -17,8 +17,11 @@ class PropertySearchController extends AbstractController
     {
         $propertySearch = new PropertySearch();
         // Create the form using the PropertySearchForm class
-        $form = $this->createForm(PropertySearchForm::class, $propertySearch);
-        return $this->render('includes/_searchWidget.html.twig', [
+        $form = $this->createForm(PropertySearchForm::class, $propertySearch, [
+            'method' => 'GET',
+            'action' => $this->generateUrl('search_results')
+        ]);
+        return $this->render('includes/_search_widget.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -30,25 +33,24 @@ class PropertySearchController extends AbstractController
         // Create a new PropertySearch object
         $propertySearch = new PropertySearch();
         // Create the form using the PropertySearchForm class
-        $form = $this->createForm(PropertySearchForm::class, $propertySearch);
+        $form = $this->createForm(PropertySearchForm::class, $propertySearch, [
+            'method' => 'GET',
+        ]);
         // Handle the form submission
         $form->handleRequest($request);
+        $properties=null;
         // Check if the form is submitted and valid
         if ($form->isSubmitted() && $form->isValid()) {
             // passes directly propertySearch
             $properties = $repository->search($propertySearch);
             // Render the search results in a Twig template
-            return $this->render('search-results', [
-                'controller_name' => 'PropertyController',
-                //set the properties to the search results and show the form
-                'properties' => $properties,
-                'form' => $form->createView()
-            ]);
+
         }
         // Render the search form in a Twig template
+
         return $this->render('property/search-results.html.twig', [
-            'controller_name' => 'PropertyController',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'properties' => $properties
         ]);
     }
 }

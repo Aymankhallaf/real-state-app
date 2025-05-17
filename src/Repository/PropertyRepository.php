@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Property;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Model\PropertySearch;
+
 
 /**
  * @extends ServiceEntityRepository<Property>
@@ -19,16 +21,16 @@ class PropertyRepository extends ServiceEntityRepository
     /**
      * @return Property[] Returns an array of Property objects
      */
-    public function search($value): array
+    public function search(PropertySearch $search): array
     {
-return $this->createQueryBuilder('p')
-        ->leftJoin('p.type', 'pt')
-        ->andWhere('p.title LIKE :val OR p.purpose LIKE :val OR pt.name LIKE :val')
-        ->setParameter('val', '%' . $value . '%')
-        ->orderBy('p.createdAt', 'ASC')
-        ->setMaxResults(10)
-        ->getQuery()
-        ->getResult()
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.type', 'pt')
+            ->andWhere('p.title LIKE :title')
+            ->setParameter('title', '%' . $search->getTitle() . '%')
+            ->orderBy('p.createdAt', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
         ;
     }
 
