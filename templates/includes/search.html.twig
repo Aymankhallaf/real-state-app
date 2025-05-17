@@ -33,6 +33,7 @@
 
 {% if properties is defined %}
 <h2>Results:</h2>
+{{dump(properties)}}
 {% if properties|length > 0 %}
 <ul>
     {% for property in properties %}

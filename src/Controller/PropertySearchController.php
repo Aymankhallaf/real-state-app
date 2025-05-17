@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Form\PropertySearchForm;
 use App\Model\PropertySearch;
 use App\Repository\PropertyRepository;
@@ -12,7 +13,6 @@ use Symfony\Component\Routing\Attribute\Route;
 class PropertySearchController extends AbstractController
 {
     #[Route('/search', name: 'app_search')]
-    
     public function searchProperty(Request $request, PropertyRepository $repository): Response
     {
         // Create a new PropertySearch object
@@ -27,7 +27,7 @@ class PropertySearchController extends AbstractController
             $propertySearch = $request->query->get('q');
             $properties = $repository->search($propertySearch);
             // Render the search results in a Twig template
-            return $this->render('includes/search.html.twig', [
+            return $this->redirectToRoute('includes/search.html.twig', [
                 'controller_name' => 'PropertyController',
                 //set the properties to the search results and show the form
                 'properties' => $properties,
