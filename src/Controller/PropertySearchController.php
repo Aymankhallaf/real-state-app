@@ -18,39 +18,37 @@ class PropertySearchController extends AbstractController
         $propertySearch = new PropertySearch();
         // Create the form using the PropertySearchForm class
         $form = $this->createForm(PropertySearchForm::class, $propertySearch);
-         return $this->render('includes/_searchWidget.html.twig', [
-        'form' => $form->createView(),
-    ]);
+        return $this->render('includes/_searchWidget.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
-    // #[Route('/search-results', name: 'search-results')]
-    // public function searchResults(PropertyRepository $repository): Response
-    // {
+    #[Route('/search-results', name: 'search_results')]
+    public function searchResults(Request $request, PropertyRepository $repository): Response
+    {
 
-
-    //     // Create a new PropertySearch object
-    //     $propertySearch = new PropertySearch();
-    //     // Create the form using the PropertySearchForm class
-    //     $form = $this->createForm(PropertySearchForm::class, $propertySearch);
-    //     // Handle the form submission
-    //     $form->handleRequest($request);
-    //     // Check if the form is submitted and valid
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         // Fetch properties based on the search criteria
-    //         $propertySearch = $request->query->get('q');
-    //         $properties = $repository->search($propertySearch);
-    //         // Render the search results in a Twig template
-    //         return $this->redirectToRoute('search-results', [
-    //             'controller_name' => 'PropertyController',
-    //             //set the properties to the search results and show the form
-    //             'properties' => $properties,
-    //             'form' => $form->createView()
-    //         ]);
-    //     }
-    //     // Render the search form in a Twig template
-    //     return $this->render('includes/_searchWidget.html.twig', [
-    //         'controller_name' => 'PropertyController',
-    //         'form' => $form->createView()
-    //     ]);
-    // }
+        // Create a new PropertySearch object
+        $propertySearch = new PropertySearch();
+        // Create the form using the PropertySearchForm class
+        $form = $this->createForm(PropertySearchForm::class, $propertySearch);
+        // Handle the form submission
+        $form->handleRequest($request);
+        // Check if the form is submitted and valid
+        if ($form->isSubmitted() && $form->isValid()) {
+            // passes directly propertySearch
+            $properties = $repository->search($propertySearch);
+            // Render the search results in a Twig template
+            return $this->render('search-results', [
+                'controller_name' => 'PropertyController',
+                //set the properties to the search results and show the form
+                'properties' => $properties,
+                'form' => $form->createView()
+            ]);
+        }
+        // Render the search form in a Twig template
+        return $this->render('property/search-results.html.twig', [
+            'controller_name' => 'PropertyController',
+            'form' => $form->createView()
+        ]);
+    }
 }
