@@ -19,6 +19,7 @@ class PropertySearchController extends AbstractController
         // Create the form using the PropertySearchForm class
         $form = $this->createForm(PropertySearchForm::class, $propertySearch, [
             'method' => 'GET',
+            'csrf_protection' => false,
             'action' => $this->generateUrl('search_results')
         ]);
         return $this->render('includes/_search_widget.html.twig', [
@@ -41,9 +42,9 @@ class PropertySearchController extends AbstractController
         // $properties=null;
         // Check if the form is submitted and valid
         // if ($form->isSubmitted() && $form->isValid()) {
-            // passes directly propertySearch
-            $properties = $repository->search($propertySearch);
-            // Render the search results in a Twig template
+        // passes directly propertySearch
+        $properties = $repository->search($propertySearch);
+        // Render the search results in a Twig template
 
         // }
         // Render the search form in a Twig template
