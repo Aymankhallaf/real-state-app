@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
                 <a href="{{path('home')}}" class="nav-item nav-link active">Home</a>
-                <a href="{{ url('home', {}, 'property') }}" class="nav-item nav-link">Property</a>
+                <a href="{{ path('properties') }}" class="nav-item nav-link">Properties</a>
                 <a href="{{ url('home', {}, 'about-us') }}" class="nav-item nav-link">About US</a>
                 {% if app.user %}
                 <a href="{{ path('app_logout') }}" class="nav-item nav-link">{{ app.user.userIdentifier }}, Logout</a>
