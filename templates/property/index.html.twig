@@ -7,6 +7,8 @@
 <div class="container-xxl bg-white p-0">
     <div class="container-xxl py-5">
         <div class="container">
+            {{ render(controller('App\\Controller\\PropertySearchController::searchProperty')) }}
+
             <div class="row g-0 gx-5 align-items-end">
                 <div class="col-lg-6">
                     <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
