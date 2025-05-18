@@ -1,3 +1,4 @@
+{%import 'marcos/_property.html.twig' as propertyMacros %}
 {% extends "base.html.twig" %}
 {% block title %}
 {{ parent() }} - Home
@@ -6,19 +7,31 @@
 {% block content %}
 
 <div class="container-xxl bg-white p-0">
-    <!-- Spinner Start -->
-    {% include 'includes/spinner.html.twig' %}
-    <!-- Spinner End -->
-    <!-- Header Start -->
-    {% include 'includes/header.html.twig' %}
-    <!-- Header End -->
-    <!-- Search Start -->
-    {{ render(controller('App\\Controller\\PropertySearchController::searchProperty')) }}
+    <div class="container-xxl py-5">
+        <div class="container">
+            <!-- Search Start -->
+            {{ render(controller('App\\Controller\\PropertySearchController::searchProperty')) }}
 
-    <!-- Search End -->
+            <!-- Search End -->
+            {% if properties is defined %}
+            <h1 class="mb-4">Edit Property</h1>
+            <div class="container">
+                {% if properties|length > 0 %}
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <div class="row g-4">
+                        {% for property in properties %}
+                        {{ propertyMacros.property(property) }}
+                        {% endfor %}
+                    </div>
+                </div>
 
-
-
+                {% else %}
+                <p>No properties found.</p>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

@@ -30,17 +30,3 @@
 
     </div>
 </div>
-
-{% if properties is defined %}
-<h2>Results:</h2>
-{{dump(properties)}}
-{% if properties|length > 0 %}
-<ul>
-    {% for property in properties %}
-    <li>{{ property.title }} - {{ property.type.name }} - {{ property.purpose }}</li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No properties found.</p>
-{% endif %}
-{% endif %}
