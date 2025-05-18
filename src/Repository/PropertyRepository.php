@@ -23,15 +23,26 @@ class PropertyRepository extends ServiceEntityRepository
      */
     public function search(PropertySearch $search): array
     {
-        return $this->createQueryBuilder('p')
+        $qb = $this->createQueryBuilder('p')
             ->leftJoin('p.type', 'pt')
-            ->andWhere('p.title LIKE :title')
-            ->setParameter('title', '%' . $search->getTitle() . '%')
-            ->orderBy('p.createdAt', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+            ->addSelect('pt');
+
+        if ($search->getTitle()) {
+            $qb->andWhere('p.title LIKE :title')
+                ->setParameter('title', '%' . $search->getTitle() . '%');
+        }
+
+        if ($search->getPurpose()) {
+            $qb->andWhere('p.purpose = :purpose')
+                ->setParameter('purpose', $search->getPurpose());
+        }
+
+        if ($search->getType()) {
+            $qb->andWhere('p.type = :type')
+                ->setParameter('type', $search->getType());
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
 
