@@ -36,12 +36,22 @@ class PropertySearchForm extends AbstractType
             ])
         ;
     }
+    
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             // Configure your form options here
         ]);
+    }
+
+    /**
+     * Changes url field title from deafult 'property_search_form' to 'property' 
+     * @return string
+     */
+    public function getBlockPrefix(): string
+    {
+        return 'property';
     }
 
 }
