@@ -4,12 +4,25 @@
             <a class="btn btn-outline-primary active" data-bs-toggle="pill" href="#tab-1">Featured</a>
         </li>
         <li class="nav-item me-2">
-            <a class="btn btn-outline-primary" data-bs-toggle="pill"
-                href="{{ path('search_results', { purpose: 'For Sale' }) }}">For Sell</a>
+            <a class="btn btn-outline-primary {{ app.request.get('purpose') == 'For Sale' ? 'active' : '' }}"
+                data-bs-toggle="pill" href="{{ path('search_results', {
+       purpose: 'For Sale',
+       title: app.request.get('title'),
+       type: app.request.get('type')
+   }) }}">
+                For Sell
+            </a>
         </li>
         <li class="nav-item me-0">
-            <a class="btn btn-outline-primary" data-bs-toggle="pill"
-                href="{{ path('search_results', { purpose: 'For Rent' }) }}">For Rent</a>
+
+            <a class="btn btn-outline-primary {{ app.request.get('purpose') == 'For Rent' ? 'active' : '' }}"
+                data-bs-toggle="pill" href="{{ path('search_results', {
+       purpose: 'For Rent',
+       title: app.request.get('title'),
+       type: app.request.get('type')
+   }) }}">
+                For Rent
+            </a>
         </li>
     </ul>
 </div>
