@@ -13,14 +13,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
-                <a href="{{path('home')}}" class="nav-item nav-link active">Home</a>
-                <a href="{{ path('properties') }}" class="nav-item nav-link">Properties</a>
-                <a href="{{ url('home', {}, 'about-us') }}" class="nav-item nav-link">About US</a>
+                <a href="{{path('home')}}" class="nav-item nav-link {{ app.request.attributes.get('_route') == 'home' ? 'active' : '' }}">Home</a>
+                <a href="{{ path('properties') }}" class="nav-item nav-link {{ app.request.attributes.get('_route') == 'properties' ? 'active' : '' }}">Properties</a>
+                <a href="{{ url('home')}}#about-us" class="nav-item nav-link {{ app.request.attributes.get('_route') == '#about-us' ? 'active' : '' }}">About US</a>
                 {% if app.user %}
-                <a href="{{ path('app_logout') }}" class="nav-item nav-link">{{ app.user.userIdentifier }}, Logout</a>
+                <a href="{{ path('app_logout') }}" class="nav-item nav-link {{ app.request.attributes.get('_route') == 'app_logout' ? 'active' : '' }}">{{ app.user.userIdentifier }}, Logout</a>
                 {% else %}
-                <a href="{{path('app_register')}}" class="nav-item nav-link active">Register</a>
-                <a href="{{path('app_login')}}" class="nav-item nav-link">Log in</a>
+                <a href="{{path('app_register')}}" class="nav-item nav-link {{ app.request.attributes.get('_route') == 'app_register' ? 'active' : '' }}">Register</a>
+                <a href="{{path('app_login')}}" class="nav-item nav-link {{ app.request.attributes.get('_route') == 'app_login' ? 'active' : '' }}">Log in</a>
                 {% endif %}
 
                 <!-- <div class="nav-item dropdown">
