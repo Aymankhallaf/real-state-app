@@ -14,7 +14,9 @@
 
             <!-- Search End -->
             {% if properties is defined %}
-            <h1 class="mb-4">Edit Property</h1>
+            <h1 class="mb-4">Search Results</h1>
+            {{ include('includes/_fillter_property.html.twig') }}
+
             <div class="container">
                 {% if properties|length > 0 %}
                 <div id="tab-1" class="tab-pane fade show p-0 active">
