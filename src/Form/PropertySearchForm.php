@@ -46,12 +46,12 @@ class PropertySearchForm extends AbstractType
     }
 
     /**
-     * Changes url field title from deafult 'property_search_form' to 'property' 
+     * Changes url field title from deafult 'property_search_form' to '' 
      * @return string
      */
     public function getBlockPrefix(): string
     {
-        return 'property';
+        return '';
     }
 
 }
