@@ -26,6 +26,7 @@ class PropertySearchController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    
 
     #[Route('/search-results', name: 'search_results')]
     public function searchResults(Request $request, PropertyRepository $repository): Response

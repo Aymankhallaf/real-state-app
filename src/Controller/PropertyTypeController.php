@@ -12,10 +12,10 @@ use App\Entity\PropertyType;
 final class PropertyTypeController extends AbstractController
 {
     #[Route('/types', name: 'app_property_type')]
-    public function index(PropertyTypeRepository $repository): Response
+    public function typeSection(PropertyTypeRepository $repository): Response
     {
         $types = $repository->findAll();
-        return $this->render('property_type/index.html.twig', [
+        return $this->render('includes/_type_section.html.twig', [
             'controller_name' => 'PropertyTypeController',
             'types' => $types
         ]);
