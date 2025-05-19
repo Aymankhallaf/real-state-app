@@ -5,17 +5,15 @@
 {% endblock %}
 
 {% block content %}
-{{ dump(type) }}
-{{ dump(properties) }}
+
 <div class="container-xxl bg-white p-0">
     <div class="container-xxl py-5">
         <div class="container">
             <!-- Search Start -->
             {{ render(controller('App\\Controller\\PropertySearchController::searchProperty')) }}
-            {{ render(controller('App\\Controller\\PropertySearchController::searchProperty')) }}
             <!-- Search End -->
             {% if properties is defined %}
-            <h1 class="mb-4">type name</h1>
+            <h1 class="mb-4">{{type.name}}</h1>
             {{ include('includes/_fillter_property.html.twig') }}
 
             <div class="container">
