@@ -13,34 +13,12 @@
     <!-- Spinner Start -->
     {% include 'includes/spinner.html.twig' %}
     <!-- Spinner End -->
-
     <!-- Search Start -->
     {{ render(controller('App\\Controller\\PropertySearchController::searchProperty')) }}
-
     <!-- Search End -->
     <!-- Category Start -->
-    <!-- <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="mb-3">Property Types</h1>
-                <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod
-                    sit. Ipsum diam justo sed rebum vero dolor duo.</p>
-            </div>
-            <div class="row g-4">
-                {% for type in types %}
-                                    {{macro_type.type(type)}}
-                {% endfor %}
-
-            </div>
-        </div>
-    </div> -->
-{{ render(controller('App\\Controller\\PropertyTypeController::typeSection')) }}
-
-
+    {{ render(controller('App\\Controller\\PropertyTypeController::typeSection')) }}
     <!-- Category End -->
-
-
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
