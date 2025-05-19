@@ -17,8 +17,7 @@ class PropertyType
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 15)]
-    #[ORM\Column(unique: true)]
+    #[ORM\Column(length: 15,unique: true)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
