@@ -16,6 +16,15 @@ class PropertyTypeRepository extends ServiceEntityRepository
         parent::__construct($registry, PropertyType::class);
     }
 
+    public function findOneByName(string $name): ?PropertyType
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 //    /**
 //     * @return PropertyType[] Returns an array of PropertyType objects
 //     */
