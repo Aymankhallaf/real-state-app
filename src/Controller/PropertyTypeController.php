@@ -11,7 +11,7 @@ use App\Entity\PropertyType;
 
 final class PropertyTypeController extends AbstractController
 {
-    #[Route('/types', name: 'app_property_type')]
+    #[Route(name: 'app_property_type')]
     public function typeSection(PropertyTypeRepository $repository): Response
     {
         $types = $repository->findAll();

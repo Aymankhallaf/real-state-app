@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class PropertySearchController extends AbstractController
 {
-    #[Route('/search', name: 'app_search')]
+    #[Route(name: 'app_search')]
     public function searchProperty(Request $request): Response
     {
         $propertySearch = new PropertySearch();
