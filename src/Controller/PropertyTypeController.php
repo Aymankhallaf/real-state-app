@@ -20,4 +20,14 @@ final class PropertyTypeController extends AbstractController
             'types' => $types
         ]);
     }
+
+    #[Route('/types/{id<\d+>}', name: 'property_type_show')]
+    public function showType(PropertyType $type): Response
+    {
+        // Render the property type details in a Twig template
+        return $this->render('property_type/show.html.twig', [
+            'controller_name' => 'PropertyTypeController',
+            'type' => $type
+        ]);
+    }
 }
