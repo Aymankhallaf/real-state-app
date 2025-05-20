@@ -21,8 +21,8 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property Type</a>
                     <div class="dropdown-menu rounded-0 m-0">
-                        {% for type in types %}
-                        {{macro_type.type(type)}}
+                        {% for type in  get_property_types() %}
+<a href="" class="dropdown-item">{{type.name}}</a>
                         {% endfor %}
                     </div>
                     <!-- menu Type end-->
