@@ -20,31 +20,34 @@
                 <!-- menu Type start-->
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property Type</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        {% for type in  get_property_types() %}
-<a href="" class="dropdown-item">{{type.name}}</a>
+                    <ul class="dropdown-menu rounded-0 m-0">
+                        {% for type in get_property_types() %}
+                        <li class="dropdown-item">
+                            <a href="{{ path('property_type_show', { name: type.name }) }}">{{type.name}}</a>
+                        </li>
                         {% endfor %}
-                    </div>
-                    <!-- menu Type end-->
+                    </ul>
+                </div>
 
-                    <a href="{{ path('properties') }}"
-                        class="nav-item nav-link {{ app.request.attributes.get('_route') == 'properties' ? 'active' : '' }}">Properties</a>
-                    <!-- To do active abuout us with JS -->
-                    <a href="{{ url('home')}}#about-us" class="nav-item nav-link">About US</a>
-                    {% if app.user %}
-                    <a href="{{ path('app_logout') }}"
-                        class="nav-item nav-link {{ app.request.attributes.get('_route') == 'app_logout' ? 'active' : '' }}">{{
-                        app.user.userIdentifier }}, Logout</a>
-                    {% else %}
-                    <a href="{{path('app_register')}}"
-                        class="nav-item nav-link {{ app.request.attributes.get('_route') == 'app_register' ? 'active' : '' }}">Register</a>
-                    <a href="{{path('app_login')}}"
-                        class="nav-item nav-link {{ app.request.attributes.get('_route') == 'app_login' ? 'active' : '' }}">Log
-                        in</a>
-                    {{app.request.pathInfo}}
-                    {% endif %}
+                <!-- menu Type end-->
 
-                    <!-- <div class="nav-item dropdown">
+                <a href="{{ path('properties') }}"
+                    class="nav-item nav-link {{ app.request.attributes.get('_route') == 'properties' ? 'active' : '' }}">Properties</a>
+                <!-- To do active abuout us with JS -->
+                <a href="{{ url('home')}}#about-us" class="nav-item nav-link">About US</a>
+                {% if app.user %}
+                <a href="{{ path('app_logout') }}"
+                    class="nav-item nav-link {{ app.request.attributes.get('_route') == 'app_logout' ? 'active' : '' }}">{{
+                    app.user.userIdentifier }}, Logout</a>
+                {% else %}
+                <a href="{{path('app_register')}}"
+                    class="nav-item nav-link {{ app.request.attributes.get('_route') == 'app_register' ? 'active' : '' }}">Register</a>
+                <a href="{{path('app_login')}}"
+                    class="nav-item nav-link {{ app.request.attributes.get('_route') == 'app_login' ? 'active' : '' }}">Log
+                    in</a>
+                {% endif %}
+
+                <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="property-list.html" class="dropdown-item">Property List</a>
@@ -52,7 +55,7 @@
                         <a href="property-agent.html" class="dropdown-item">Property Agent</a>
                     </div>
                 </div> -->
-                    <!-- <div class="nav-item dropdown">
+                <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="testimonial.html" class="dropdown-item">Testimonial</a>
@@ -60,11 +63,11 @@
                     </div>
                 </div>
                 <a href="contact.html" class="nav-item nav-link">Contact</a> -->
-                </div>
-                {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{path('property_create')}}" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
-                {%endif%}
             </div>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{path('property_create')}}" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
+            {%endif%}
+        </div>
     </nav>
 </div>
 <!-- Navbar End -->

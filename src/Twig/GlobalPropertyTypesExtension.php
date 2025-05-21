@@ -1,13 +1,13 @@
 <?php
 namespace App\Twig;
 
+use App\Repository\PropertyTypeRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use App\Repository\PropertyTypeRepository;
 
 class GlobalPropertyTypesExtension extends AbstractExtension
 {
-    private PropertyTypeRepository $repository;
+    private $repository;
 
     public function __construct(PropertyTypeRepository $repository)
     {
